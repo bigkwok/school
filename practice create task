@@ -1,1 +1,59 @@
+"""
+Program Description:
+This program is a simple task tracker. It allows users to add tasks, mark tasks as completed, and view their tasks.
+
+1. Users can add tasks with a title and description.
+2. Users can mark tasks as completed.
+3. Users can view their list of tasks.
+
+"""
+
+# Initialize an empty list to store tasks
+task_list = []
+
+# Function to add a task to the list
+def add_task(title, description):
+    task = {"Title": title, "Description": description, "Completed": False}
+    task_list.append(task)
+
+# Function to mark a task as completed
+def mark_completed(index):
+    if 0 <= index < len(task_list):
+        task_list[index]["Completed"] = True
+
+# Function to display all tasks
+def display_tasks():
+    for index, task in enumerate(task_list):
+        status = "Completed" if task["Completed"] else "Incomplete"
+        print(f"{index + 1}. Title: {task['Title']} - Description: {task['Description']} - Status: {status}")
+
+# Main program loop
+while True:
+    print("\nTask Tracker Menu:")
+    print("1. Add Task")
+    print("2. Mark Task as Completed")
+    print("3. View Tasks")
+    print("4. Exit")
+    
+    choice = input("Enter your choice (1/2/3/4): ")
+    
+    if choice == '1':
+        title = input("Enter task title: ")
+        description = input("Enter task description: ")
+        add_task(title, description)
+        print("Task added successfully!")
+    elif choice == '2':
+        index = int(input("Enter the task index to mark as completed: ")) - 1
+        mark_completed(index)
+        print("Task marked as completed!")
+    elif choice == '3':
+        print("\nList of Tasks:")
+        display_tasks()
+    elif choice == '4':
+        print("Exiting program. Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please try again.")
+
+# End of program
 
